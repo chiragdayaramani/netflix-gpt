@@ -72,3 +72,6 @@ npm start
 - Firebase Setup
 - Deploying our app to firebase
 - Create Sign Up user in firebase - https://firebase.google.com/docs/auth/web/password-auth#web
+- Implement Sign In User API
+- Redux npm install react-redux  npm install react-redux
+- Created Redux Store with userSlice

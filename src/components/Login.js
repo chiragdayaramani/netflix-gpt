@@ -2,13 +2,16 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { checkVallidData } from '../utils/validate';
 import { auth } from '../utils/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
 
     const [isSignInForm, setIsSignInForm] = useState(true);
     const email = useRef(null);
     const password = useRef(null);
+    const name = useRef(null);
     const [errorMessage,setErrorMessage] = useState(null);
+    const navigate = useNavigate();
 
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
@@ -32,9 +35,16 @@ const Login = () => {
             .then((userCredential) => {
               // Signed up 
               const user = userCredential.user;
-              console.log(user);
-              
-              
+
+              updateProfile(user,{
+                displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/68194613?v=4"
+              }).then(()=>{
+                console.log(user);
+                navigate("/browse");
+              }).catch((error)=>{
+                setErrorMessage(error)
+              });
+
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -52,6 +62,7 @@ const Login = () => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user);
+                navigate("/browse");
                 
             })
             .catch((error) => {
@@ -71,7 +82,7 @@ const Login = () => {
             </div>
             <form onSubmit={(e)=>e.preventDefault()} className='absolute p-12 bg-black w-3/12 my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
                 <h1 className='font-bold text-3xl py-4'>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
-                { !isSignInForm && <input type='text' placeholder='Name' className='p-4 my-4 w-full bg-gray-500' />}
+                { !isSignInForm && <input ref={name} type='text' placeholder='Name' className='p-4 my-4 w-full bg-gray-500' />}
                 <input ref={email} type='text' placeholder='Email Address' className='p-4 my-4 w-full bg-gray-500' />
                 <input ref={password} type='password' placeholder='Password' className='p-4 my-4 w-full bg-gray-500' />
                 <p className='text-red-500'>{errorMessage}</p>
