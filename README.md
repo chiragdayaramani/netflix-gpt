@@ -64,5 +64,8 @@ npm start
 - Create React App
 - Configure Tailwind
 - Header
+- Routing of App
 - login Form
 - Sign Up Form
+- Form Validation  -- can use Formik
+- Use Ref Hook
