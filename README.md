@@ -69,3 +69,6 @@ npm start
 - Sign Up Form
 - Form Validation  -- can use Formik
 - Use Ref Hook
+- Firebase Setup
+- Deploying our app to firebase
+- Create Sign Up user in firebase - https://firebase.google.com/docs/auth/web/password-auth#web
