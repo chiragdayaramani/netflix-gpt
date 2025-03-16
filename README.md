@@ -75,3 +75,5 @@ npm start
 - Implement Sign In User API
 - Redux npm install react-redux  npm install react-redux
 - Created Redux Store with userSlice
+- Implemented SignOut
+- Update Profile
