@@ -77,3 +77,5 @@ npm start
 - Created Redux Store with userSlice
 - Implemented SignOut
 - Update Profile
+- Bug fix: Signup user displayName and profile picture update
+- Bug fix: If the user is not logged in Redirect /browse to login page and vice-versa 

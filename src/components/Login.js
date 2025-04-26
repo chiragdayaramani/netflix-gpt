@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+
 const Login = () => {
 
     const [isSignInForm, setIsSignInForm] = useState(true);
@@ -45,7 +46,7 @@ const Login = () => {
                 const {uid, email, displayName, photoURL }= auth;
                 dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL: photoURL}));
                 console.log(user);
-                navigate("/browse");
+                // navigate("/browse");
 
               }).catch((error)=>{
                 setErrorMessage(error)
@@ -68,7 +69,7 @@ const Login = () => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user);
-                navigate("/browse");
+                // navigate("/browse");
                 
             })
             .catch((error) => {
