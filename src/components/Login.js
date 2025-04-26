@@ -3,9 +3,9 @@ import Header from './Header'
 import { checkVallidData } from '../utils/validate';
 import { auth } from '../utils/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
 
@@ -14,7 +14,6 @@ const Login = () => {
     const password = useRef(null);
     const name = useRef(null);
     const [errorMessage,setErrorMessage] = useState(null);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const toggleSignInForm = () => {
@@ -41,7 +40,7 @@ const Login = () => {
               const user = userCredential.user;
 
               updateProfile(user,{
-                displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/68194613?v=4"
+                displayName: name.current.value, photoURL: USER_AVATAR
               }).then(()=>{
                 const {uid, email, displayName, photoURL }= auth;
                 dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL: photoURL}));

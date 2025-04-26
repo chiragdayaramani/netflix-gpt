@@ -79,3 +79,4 @@ npm start
 - Update Profile
 - Bug fix: Signup user displayName and profile picture update
 - Bug fix: If the user is not logged in Redirect /browse to login page and vice-versa 
+- Unsubscribe to the onAuthStateChanged Callback
